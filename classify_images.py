@@ -91,7 +91,7 @@ def classify_images(images_dir, results_dic, model):
        for i in range(len(model_label)):
           model_label[i] = model_label[i].lower()
           model_label[i] = model_label[i].strip()
-       model_label = ",".join(model_label)
+       model_label = ", ".join(model_label)
        # defines truth as pet image label 
        truth = results_dic[key][0]
 
