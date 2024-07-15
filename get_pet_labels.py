@@ -40,6 +40,39 @@ def get_pet_labels(image_dir):
       List. The list contains for following item:
          index 0 = pet image label (string)
     """
-    # Replace None with the results_dic dictionary that you created with this
-    # function
-    return None
+    in_files = listdir(image_dir)
+    results_dic = dict()
+    for idx in range(0, len(in_files), 1):
+       # Skips file if starts with . (like .DS_Store of Mac OSX) because it 
+       # isn't an pet image file
+       if in_files[idx][0] != ".":
+           
+          # Creates temporary label variable to hold pet label name extracted 
+          pet_label = ""
+
+          ## Sets string to lower case letters
+          low_pet_image = in_files[idx].lower()
+
+          ## Splits lower case string by _ to break into words 
+          word_list_pet_image = low_pet_image.split("_")
+
+          ## Loops to check if word in pet name is only
+          ## alphabetic characters - if true append word
+          ## to pet_name separated by trailing space 
+          for word in word_list_pet_image:
+            if word.isalpha():
+                pet_label += word + " "
+
+          ## Strip off starting/trailing whitespace characters 
+          pet_label = pet_label.strip()
+
+          # If filename doesn't already exist in dictionary add it and it's
+          # pet label - otherwise print an error message because indicates 
+          # duplicate files (filenames)
+          if in_files[idx] not in results_dic:
+            results_dic[in_files[idx]] = [pet_label]
+          else:
+              print("** Warning: Duplicate files exist in directory:", 
+                    in_files[idx])
+    return results_dic
+
