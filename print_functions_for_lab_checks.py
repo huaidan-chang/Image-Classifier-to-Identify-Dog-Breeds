@@ -180,7 +180,7 @@ def check_classifying_labels_as_dogs(results_dic):
         for key in results_dic:
 
             # Prints only if a Match Index 2 == 1
-            if results_dic[key][2] == 1:
+            if results_dic[key][3] == results_dic[key][4]:
 
                 # Increments Match counter
                 n_match += 1
@@ -193,7 +193,7 @@ def check_classifying_labels_as_dogs(results_dic):
         for key in results_dic:
         
             # Prints only if NOT-a-Match Index 2 == 0 
-            if results_dic[key][2] == 0:
+            if results_dic[key][3] != results_dic[key][4]:
  
                 # Increments Not-a-Match counter
                 n_notmatch += 1
